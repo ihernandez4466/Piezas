@@ -1,4 +1,5 @@
 #include "Piezas.h"
+#include <gtest/gtest.h>
 #include <vector>
 /** CLASS Piezas
  * Class for representing a Piezas vertical board, which is roughly based
@@ -23,6 +24,14 @@
 
 const int rows = 3;
 const int columns = 4;
+class PiezasTest : public ::testing::Test
+{
+	protected:
+		PracticeTest(){} //constructor runs before each test
+		virtual ~PracticeTest(){} //destructor cleans up after tests
+		virtual void SetUp(){} //sets up before each test (after constructor)
+		virtual void TearDown(){} //clean up after each test, (before destructor)
+};
 
 Piezas::Piezas()
 {
@@ -61,7 +70,14 @@ void Piezas::reset()
 **/ 
 Piece Piezas::dropPiece(int column)
 {
-    bool full = true;
+    //drop piece on given column 
+    /*for(int i = 0; i < columns; i++){
+        if(board[column][i] == Blank){
+            board[column][i] = turn;
+            return turn;
+        }
+    }*/
+    /*bool full = true;
     for(int i=0; i< rows; i++){
         if(board[i][column] == Blank){
             full = false;
@@ -75,7 +91,7 @@ Piece Piezas::dropPiece(int column)
             turn = X;
         }
         return Blank;
-    }
+    }*/
 }
 
 /**
@@ -99,4 +115,10 @@ Piece Piezas::pieceAt(int row, int column)
 Piece Piezas::gameState()
 {
     return Blank;
+}
+
+Test(PiezasTest, setup){
+    Practice obj;
+    Piece actual = obj.gameState();
+    ASSERT_EQ(actual, Blank);
 }
