@@ -26,19 +26,6 @@ const int columns = 4;
 
 Piezas::Piezas()
 {
-    /*board.resize(rows);
-    for(int i = 0;i < (int)board.size(); i++)
-    {
-        board[i].resize(columns);
-    }
-
-    for(int i = 0;i < (int)board.size(); i++)
-    {
-        for(int j = 0;j < (int)board[i].size(); j++)
-        {
-            board[i][j] = Blank;
-        }
-    }*/
     reset();
 }
 
@@ -61,6 +48,7 @@ void Piezas::reset()
             board[i][j] = Blank;
         }
     }
+    turn = X;
 }
 
 /**
