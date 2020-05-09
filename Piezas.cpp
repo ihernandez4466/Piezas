@@ -100,7 +100,7 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
-    return board[row][columns];
+    return board[row][column];
 }
 
 /**
