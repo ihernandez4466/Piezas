@@ -117,7 +117,7 @@ Piece Piezas::gameState()
     return Blank;
 }
 
-Test(PiezasTest, setup){
+TEST(PiezasTest, setup){
     Practice obj;
     Piece actual = obj.gameState();
     ASSERT_EQ(actual, Blank);
