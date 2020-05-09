@@ -71,12 +71,12 @@ void Piezas::reset()
 Piece Piezas::dropPiece(int column)
 {
     //drop piece on given column 
-    /*for(int i = 0; i < columns; i++){
+    for(int i = 0; i < columns; i++){
         if(board[column][i] == Blank){
             board[column][i] = turn;
-            return turn;
+            return board[columns][i];
         }
-    }*/
+    }
     /*bool full = true;
     for(int i=0; i< rows; i++){
         if(board[i][column] == Blank){
@@ -100,7 +100,7 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
-    return Blank;
+    return board[row][columns];
 }
 
 /**
@@ -121,4 +121,10 @@ TEST(PiezasTest, setup){
     Piezas obj;
     Piece actual = obj.gameState();
     ASSERT_EQ(actual, Blank);
+}
+
+TEST(PiezasTest, dropPiece){
+    Piezas obj;
+    Piece actual = obj.dropPiece(0);
+    ASSERT_EQ('X', obj.pieceAt(0,0));
 }
