@@ -22,8 +22,8 @@
  * specifies it is X's turn first
 **/
 
-const int rows = 3;
-const int columns = 4;
+const int ROWS = 3;
+const int COLUMNS = 4;
 class PiezasTest : public ::testing::Test
 {
 	protected:
@@ -44,10 +44,10 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
-    board.resize(rows);
+    board.resize(ROWS);
     for(int i = 0;i < (int)board.size(); i++)
     {
-        board[i].resize(columns);
+        board[i].resize(COLUMNS);
     }
 
     for(int i = 0;i < (int)board.size(); i++)
@@ -71,7 +71,7 @@ void Piezas::reset()
 Piece Piezas::dropPiece(int column)
 {
     //drop piece on given column 
-    for(int i = 0; i < columns; i++){
+    for(int i = 0; i < COLUMNS; i++){
         if(board[i][column] == Blank){
             board[i][column] = turn;
             return board[columns][i];
@@ -100,6 +100,7 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
+    cout << "returning " << "[ " << row << "]" << column << endl; 
     return board[row][column];
 }
 
@@ -117,11 +118,11 @@ Piece Piezas::gameState()
     return Blank;
 }
 
-TEST(PiezasTest, setup){
+/*TEST(PiezasTest, setup){
     Piezas obj;
     Piece actual = obj.gameState();
     ASSERT_EQ(actual, Blank);
-}
+}*/
 
 TEST(PiezasTest, dropPiece){
     Piezas obj;
