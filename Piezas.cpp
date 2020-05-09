@@ -74,7 +74,7 @@ Piece Piezas::dropPiece(int column)
     for(int i = 0; i < COLUMNS; i++){
         if(board[i][column] == Blank){
             board[i][column] = turn;
-            return board[columns][i];
+            return board[column][i];
         }
     }
     /*bool full = true;
@@ -100,7 +100,6 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
-    cout << "returning " << "[ " << row << "]" << column << endl; 
     return board[row][column];
 }
 
