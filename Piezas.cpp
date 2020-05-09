@@ -20,8 +20,18 @@
  * Constructor sets an empty board (default 3 rows, 4 columns) and 
  * specifies it is X's turn first
 **/
+
+const int rows = 3;
+const int columns = 4;
+
 Piezas::Piezas()
 {
+    board.resize(rows);
+    for(int i = 0;i < (int)board.size(); i++)
+    {
+        board[i].resize(columns);
+    }
+
     for(int i = 0;i < (int)board.size(); i++)
     {
         for(int j = 0;j < (int)board[i].size(); j++)
