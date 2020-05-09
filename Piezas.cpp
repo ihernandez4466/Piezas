@@ -72,8 +72,8 @@ Piece Piezas::dropPiece(int column)
 {
     //drop piece on given column 
     for(int i = 0; i < columns; i++){
-        if(board[column][i] == Blank){
-            board[column][i] = turn;
+        if(board[i][column] == Blank){
+            board[i][column] = turn;
             return board[columns][i];
         }
     }
