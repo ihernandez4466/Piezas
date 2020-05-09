@@ -26,7 +26,7 @@ const int columns = 4;
 
 Piezas::Piezas()
 {
-    board.resize(rows);
+    /*board.resize(rows);
     for(int i = 0;i < (int)board.size(); i++)
     {
         board[i].resize(columns);
@@ -38,7 +38,8 @@ Piezas::Piezas()
         {
             board[i][j] = Blank;
         }
-    }
+    }*/
+    reset();
 }
 
 /**
