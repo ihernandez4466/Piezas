@@ -194,14 +194,13 @@ Piece Piezas::gameState()
         }
     }
     if(Xmax > Omax){
-        std::cout << "about to return X";
         return X;
     }
     else if(Xmax < Omax)
     {
-        std::cout << "about to return O";
         return O;
     }
+    std::cout << "about to return Blank" << endl;
     return Blank;
     
 }
