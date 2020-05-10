@@ -1,6 +1,8 @@
 #include "Piezas.h"
 #include <gtest/gtest.h>
 #include <vector>
+#include<iostream>
+using namespace std;
 /** CLASS Piezas
  * Class for representing a Piezas vertical board, which is roughly based
  * on the game "Connect Four" where pieces are placed in a column and 
@@ -101,18 +103,19 @@ Piece Piezas::dropPiece(int column)
     //drop piece on given column already checked to see if valid
     for(int i = 0; i < COLUMNS; i++){
         if(board[i][column] == Blank){
+            std::cout << turn;
+            board[i][column] = turn;
 
-                board[i][column] = turn;
-
-                if(turn == X){
-                    turn = O;
-                }
-                else{
-                    turn = X;
-                }
-                return board[i][column];
+            if(turn == X){
+                turn = O;
             }
-        }   
+            else{
+                turn = X;
+            }
+            std::cout << board[i][column];
+            return board[i][column];
+        }
+    }   
 }
 
 /**
