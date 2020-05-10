@@ -194,10 +194,12 @@ Piece Piezas::gameState()
         }
     }
     if(Xmax > Omax){
+        std::cout << "about to return X";
         return X;
     }
     else if(Xmax < Omax)
     {
+        std::cout << "about to return O";
         return O;
     }
     return Blank;
@@ -302,7 +304,7 @@ TEST(PiezasTest, Xwins){
     EXPECT_EQ(X, obj.gameState());
 }
 
-/*TEST(PiezasTest, tie){
+TEST(PiezasTest, tie){
 
     Piezas obj;
 	obj.dropPiece(0); 
@@ -319,4 +321,4 @@ TEST(PiezasTest, Xwins){
 	obj.dropPiece(2); 
 	
     EXPECT_EQ(Blank, obj.gameState());
-}*/
+}
