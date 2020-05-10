@@ -219,5 +219,5 @@ TEST(PiezasTest, NotoutOfBounds){
 
     ASSERT_EQ(X, actual);
     ASSERT_EQ(O, actual1);
-    ASSERT_EQ(X), actual2);
+    ASSERT_EQ(X, actual2);
 }
