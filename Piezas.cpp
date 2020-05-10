@@ -270,6 +270,7 @@ TEST(PiezasTest, NotoutOfBounds){
     ASSERT_EQ(X, actual2);
 }
 TEST(PiezasTest, GameState){
+   
    Piezas obj;
    obj.dropPiece(0);    //X
    obj.dropPiece(1);    //O
@@ -287,6 +288,5 @@ TEST(PiezasTest, GameState){
     Piece result = obj.gameState();
 
     ASSERT_EQ(O, result);
-
 
 }
