@@ -74,6 +74,13 @@ Piece Piezas::dropPiece(int column)
     for(int i = 0; i < COLUMNS; i++){
         if(board[i][column] == Blank){
             board[i][column] = turn;
+
+            if(turn == X){
+                turn = O;
+            }
+            else{
+                turn = X;
+            }
             return board[column][i];
         }
     }
@@ -117,14 +124,21 @@ Piece Piezas::gameState()
     return Blank;
 }
 
-/*TEST(PiezasTest, setup){
-    Piezas obj;
-    Piece actual = obj.gameState();
-    ASSERT_EQ(actual, Blank);
-}*/
-
 TEST(PiezasTest, dropPiece){
     Piezas obj;
     Piece actual = obj.dropPiece(0);
     ASSERT_EQ('X', obj.pieceAt(0,0));
+}
+
+TEST(PiezasTest, reset){
+    
+    Piezas obj;
+    Piece actual = obj.dropPiece(0);
+    Piece actual = obj.dropPiece(2);
+    Piece actual = obj.dropPiece(1);
+    obj.reset();
+
+    ASSERT_EQ(Blank, obj.pieceAt(0,0));
+    ASSERT_EQ(Blank, obj.pieceAt(0,1));
+    ASSERT_EQ(Blank, obj.pieceAt(0,2));
 }
