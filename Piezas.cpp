@@ -164,9 +164,9 @@ TEST(PiezasTest, FullBoard){
 TEST(PiezasTest, outOfBounds){
     
     Piezas obj;
-    Piece actual = obj.dropPiece(-1, 0);
-    Piece actual1 = obj.dropPiece(2, 6);
-    Piece actual2 = obj.dropPiece(3, 2);
+    Piece actual = obj.pieceAt(-1, 0);
+    Piece actual1 = obj.pieceAt(2, 6);
+    Piece actual2 = obj.pieceAt(3, 2);
 
     ASSERT_EQ(Invalid, actual);
     ASSERT_EQ(Invalid, actual1);
