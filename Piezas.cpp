@@ -204,7 +204,7 @@ Piece Piezas::gameState()
     
 }
 
-TEST(PiezasTest, dropPiece){
+/*TEST(PiezasTest, dropPiece){
     Piezas obj;
     Piece actual = obj.dropPiece(0);
     ASSERT_EQ('X', obj.pieceAt(0,0));
@@ -270,23 +270,23 @@ TEST(PiezasTest, NotoutOfBounds){
     ASSERT_EQ(X, actual);
     ASSERT_EQ(O, actual1);
     ASSERT_EQ(X, actual2);
-}
-TEST(PiezasTest, GameState){
-   
-	Piezas obj;
-	obj.dropPiece(12); 
-	obj.dropPiece(2); 
-	obj.dropPiece(12); 
-	obj.dropPiece(2); 
-	obj.dropPiece(2); 
-	obj.dropPiece(12); 
-	for(int i = 0; i < COLUMNS-1; i++)
-	{
-		for(int j = 0;j < ROWS; i++)
-		{
-			obj.dropPiece(i);
-		}
-	}
+}*/
 
-	EXPECT_EQ(O, obj.gameState());
+TEST(PiezasTest, tie){
+    Piezas obj;
+	obj.dropPiece(0); 
+	obj.dropPiece(0); 
+	obj.dropPiece(0); 
+	obj.dropPiece(0); 
+	obj.dropPiece(1); 
+	obj.dropPiece(1);
+    obj.dropPiece(1); 
+    obj.dropPiece(1); 
+	obj.dropPiece(2); 
+	obj.dropPiece(2); 
+	obj.dropPiece(2); 
+	obj.dropPiece(2); 
+	
+    EXPECT_EQ(Blank, obj.gameState());
+
 }
