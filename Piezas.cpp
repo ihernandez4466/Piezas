@@ -295,13 +295,25 @@ TEST(PiezasTest, Xwins){
 	{
 		for(int j = 0;j < COLUMNS; j++)
 		{
-			// X's turn
 			obj.dropPiece(j);
-			// Skip O's turn by dropping the piece out-of-bounds
 			obj.dropPiece(12);
 		}
 	}
     EXPECT_EQ(X, obj.gameState());
+}
+
+TEST(PiezasTest, Owins){
+    
+    Piezas obj;
+	for(int i = 0;i < ROWS; i++)
+	{
+		for(int j = 0;j < COLUMNS; j++)
+		{
+			obj.dropPiece(12);
+			obj.dropPiece(j);
+		}
+	}
+    EXPECT_EQ(O, obj.gameState());
 }
 
 TEST(PiezasTest, tie){
@@ -310,15 +322,15 @@ TEST(PiezasTest, tie){
 	obj.dropPiece(0); 
 	obj.dropPiece(0); 
 	obj.dropPiece(0); 
-	obj.dropPiece(0); 
+	obj.dropPiece(1); 
 	obj.dropPiece(1); 
 	obj.dropPiece(1);
-    obj.dropPiece(1); 
-    obj.dropPiece(1); 
+    obj.dropPiece(2); 
+    obj.dropPiece(2); 
 	obj.dropPiece(2); 
-	obj.dropPiece(2); 
-	obj.dropPiece(2); 
-	obj.dropPiece(2); 
+	obj.dropPiece(3); 
+	obj.dropPiece(3); 
+	obj.dropPiece(3); 
 	
     EXPECT_EQ(Blank, obj.gameState());
 }
