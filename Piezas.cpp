@@ -112,8 +112,7 @@ Piece Piezas::dropPiece(int column)
                 }
                 return board[i][column];
             }
-        }
-    }   
+        }   
 }
 
 /**
@@ -163,6 +162,11 @@ TEST(PiezasTest, dropPiece){
     Piezas obj;
     Piece actual = obj.dropPiece(0);
     ASSERT_EQ('X', obj.pieceAt(0,0));
+}
+TEST(PiezasTest, dropPieceInvalid){
+    Piezas obj;
+    Piece actual = obj.dropPiece(-1);
+    ASSERT_EQ(Invalid, actual);
 }
 
 TEST(PiezasTest, reset){
