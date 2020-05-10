@@ -273,21 +273,20 @@ TEST(PiezasTest, NotoutOfBounds){
 }
 TEST(PiezasTest, GameState){
    
-   Piezas obj;
-   obj.dropPiece(0);    //X
-   obj.dropPiece(1);    //O
-   obj.dropPiece(0);    //X
-   obj.dropPiece(0);    //O
-   obj.dropPiece(2);    //X
-   obj.dropPiece(2);    //O
-   obj.dropPiece(1);    //X
-   obj.dropPiece(2);    //O
-    obj.dropPiece(1);   //X
-    obj.dropPiece(2);   //O
-    obj.dropPiece(0);   //X
-    obj.dropPiece(1);   //0
+	Piezas obj;
+	obj.dropPiece(12); 
+	obj.dropPiece(2); 
+	obj.dropPiece(12); 
+	obj.dropPiece(2); 
+	obj.dropPiece(2); 
+	obj.dropPiece(12); 
+	for(int i = 0; i < COLUMNS-1; i++)
+	{
+		for(int j = 0;j < ROWS; i++)
+		{
+			obj.dropPiece(i);
+		}
+	}
 
-    Piece oWin = obj.gameState();
-    EXPECT_EQ(oWin, O);
-
+	EXPECT_EQ(O, obj.gameState());
 }
