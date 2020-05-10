@@ -1,6 +1,7 @@
 #include "Piezas.h"
 #include <gtest/gtest.h>
 #include <vector>
+#include <cmath>
 #include<iostream>
 using namespace std;
 /** CLASS Piezas
@@ -152,17 +153,18 @@ Piece Piezas::gameState()
     //check rows
     int Xmax, Xcur, Omax, Ocur = 0;
     for(int i = 0; i < ROWS; i++){
-        for(int j = 0; j < COLUMNS-1; j++){
-            if(board[i][j] == X && board[i][j+1] == X){
+        for(int j = 0; j < COLUMNS; j++){
+            if(board[i][j] == X){
+                Ocur = 0;
                 Xcur++;
-            }
-            else if(board[i][j] == O && board[i][j+1] == O){
-                Ocur++;
-            }
-            else if(j == COLUMNS-1){
+
                 if(Xcur > Xmax){
                     Xmax = Xcur;
                 }
+            }
+            else if(board[i][j] == O){
+                Xcur = 0;
+                Ocur++;
                 if(Ocur > Omax){
                     Omax = Ocur;
                 }
@@ -170,35 +172,35 @@ Piece Piezas::gameState()
         }
     }
     //check columns
-    Xcur, Ocur = 0;
-    for(int i = 0; i < ROWS-1; i++){
-        for(int j = 0; j < COLUMNS; j++){
-            if(board[i][j] == X && board[i+1][j] == X){
+    for(int i = 0; i < COLUMNS; i++){
+        Xcur = 0;
+        Ocur = 0;
+        for(int j = 0; j < ROWS; j++){
+            if(board[j][i] == X ){
+                Ocur = 0;
                 Xcur++;
-            }
-            else if(board[i][j] == O && board[i+1][j] == O){
-                Ocur++;
-            }
-            else if(i == ROWS-1){
+
                 if(Xcur > Xmax){
                     Xmax = Xcur;
                 }
+            }
+            else if(board[j][i] == O ){
+                Xcur = 0;
+                Ocur++;
                 if(Ocur > Omax){
                     Omax = Ocur;
                 }
             }
         }
     }
-    if(Xmax == Omax){
-        return Invalid;
-    }
-    else if(Xmax > Omax){
+    if(Xmax > Omax){
         return X;
     }
-    else
+    else if(Xmax < Omax)
     {
         return O;
     }
+    return Blank;
     
 }
 
@@ -285,6 +287,7 @@ TEST(PiezasTest, GameState){
     obj.dropPiece(0);   //X
     obj.dropPiece(1);   //0
 
-    EXPECT_EQ(O, obj.gameState());
+    Piece oWin = obj.gameState();
+    EXPECT_EQ(oWin, O);
 
 }
