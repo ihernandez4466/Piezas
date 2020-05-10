@@ -204,7 +204,7 @@ Piece Piezas::gameState()
     
 }
 
-/*TEST(PiezasTest, dropPiece){
+TEST(PiezasTest, dropPiece){
     Piezas obj;
     Piece actual = obj.dropPiece(0);
     ASSERT_EQ('X', obj.pieceAt(0,0));
@@ -270,9 +270,10 @@ TEST(PiezasTest, NotoutOfBounds){
     ASSERT_EQ(X, actual);
     ASSERT_EQ(O, actual1);
     ASSERT_EQ(X, actual2);
-}*/
+}
 
-TEST(PiezasTest, tie){
+/*TEST(PiezasTest, tie){
+
     Piezas obj;
 	obj.dropPiece(0); 
 	obj.dropPiece(0); 
@@ -288,5 +289,19 @@ TEST(PiezasTest, tie){
 	obj.dropPiece(2); 
 	
     EXPECT_EQ(Blank, obj.gameState());
+}*/
 
+TEST(PiezasTest, StillBlanks){
+
+    Piezas obj;
+	obj.dropPiece(0); 
+	obj.dropPiece(0); 
+	obj.dropPiece(0); 
+	obj.dropPiece(0); 
+	obj.dropPiece(1); 
+	obj.dropPiece(1);
+    obj.dropPiece(1); 
+	
+    EXPECT_EQ(Invalid, obj.gameState());
+    
 }
