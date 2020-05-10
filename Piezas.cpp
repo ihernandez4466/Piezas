@@ -69,23 +69,10 @@ void Piezas::reset()
  * Trying to drop a piece where it cannot be placed loses the player's turn
 **/ 
 Piece Piezas::dropPiece(int column)
-{
-    //drop piece on given column 
-    for(int i = 0; i < COLUMNS; i++){
-        if(board[i][column] == Blank){
-            board[i][column] = turn;
-
-            if(turn == X){
-                turn = O;
-            }
-            else{
-                turn = X;
-            }
-            return board[column][i];
-        }
-    }
-    /*bool full = true;
-    for(int i=0; i< rows; i++){
+{ 
+    //dont allow piece to be placed in a location where a column is full
+    bool full = true;
+    for(int i=0; i < ROWS; i++){
         if(board[i][column] == Blank){
             full = false;
         }
@@ -98,7 +85,23 @@ Piece Piezas::dropPiece(int column)
             turn = X;
         }
         return Blank;
-    }*/
+    }
+    else{
+        //drop piece on given column 
+        for(int i = 0; i < COLUMNS; i++){
+            if(board[i][column] == Blank){
+                board[i][column] = turn;
+
+                if(turn == X){
+                    turn = O;
+                }
+                else{
+                    turn = X;
+                }
+                return board[column][i];
+            }
+        }
+    }   
 }
 
 /**
@@ -141,4 +144,15 @@ TEST(PiezasTest, reset){
     ASSERT_EQ(Blank, obj.pieceAt(0,0));
     ASSERT_EQ(Blank, obj.pieceAt(0,1));
     ASSERT_EQ(Blank, obj.pieceAt(0,2));
+}
+
+TEST(PiezasTest, FullBoard){
+    
+    Piezas obj;
+    obj.dropPiece(0);
+    obj.dropPiece(0);
+    obj.dropPiece(0);
+    Piece actual = obj.dropPiece(0);
+
+    ASSERT_EQ(Blank, actual);
 }
