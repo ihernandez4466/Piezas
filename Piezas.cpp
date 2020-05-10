@@ -103,16 +103,13 @@ Piece Piezas::dropPiece(int column)
     //drop piece on given column already checked to see if valid
     for(int i = 0; i < COLUMNS; i++){
         if(board[i][column] == Blank){
-            std::cout << turn;
             board[i][column] = turn;
-
             if(turn == X){
                 turn = O;
             }
             else{
                 turn = X;
             }
-            std::cout << board[i][column];
             return board[i][column];
         }
     }   
@@ -220,9 +217,9 @@ TEST(PiezasTest, outOfBounds){
 TEST(PiezasTest, NotoutOfBounds){
     
     Piezas obj;
-    Piece actual = obj.pieceAt(1, 0);
-    Piece actual1 = obj.pieceAt(2, 2);
-    Piece actual2 = obj.pieceAt(2, 3);
+    Piece actual = obj.dropPiece(1, 0);
+    Piece actual1 = obj.dropPiece(2, 2);
+    Piece actual2 = obj.dropPiece(2, 3);
 
     ASSERT_EQ(X, actual);
     ASSERT_EQ(O, actual1);
