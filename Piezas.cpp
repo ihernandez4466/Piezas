@@ -134,8 +134,8 @@ TEST(PiezasTest, reset){
     
     Piezas obj;
     Piece actual = obj.dropPiece(0);
-    Piece actual = obj.dropPiece(2);
-    Piece actual = obj.dropPiece(1);
+    Piece actual1 = obj.dropPiece(2);
+    Piece actual2 = obj.dropPiece(1);
     obj.reset();
 
     ASSERT_EQ(Blank, obj.pieceAt(0,0));
