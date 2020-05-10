@@ -285,8 +285,6 @@ TEST(PiezasTest, GameState){
     obj.dropPiece(0);   //X
     obj.dropPiece(1);   //0
 
-    Piece result = obj.gameState();
-
-    ASSERT_EQ(O, result);
+    EXPECT_EQ(O, obj.gameState());
 
 }
