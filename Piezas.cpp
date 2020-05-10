@@ -140,22 +140,66 @@ Piece Piezas::pieceAt(int row, int column)
 **/
 Piece Piezas::gameState()
 {
-    /*//check is board is full 
+    //check is board is full 
     bool full = true;
     for(int i=0; i < ROWS; i++){
-        if(board[i][column] == Blank){
-            full = false;
+        for(int j = 0; j < COLUMNS; j++){
+            if(board[i][j] == Blank){
+                return Invalid;
+            }
         }
     }
-    if(full){
-        int Omax = 0;
-        int Xmax = 0;
-
+    //check rows
+    int Xmax, Xcur, Omax, Ocur = 0;
+    for(int i = 0; i < ROWS; i++){
+        for(int j = 0; j < COLUMNS-1; j++){
+            if(board[i][j] == X && board[i][j+1] == X){
+                Xcur++;
+            }
+            else if(board[i][j] == O && board[i][j+1] == O){
+                Ocur++;
+            }
+            else if(j == COLUMNS-1){
+                if(Xcur > Xmax){
+                    Xmax = Xcur;
+                }
+                if(Ocur > Omax){
+                    Omax = Ocur;
+                }
+            }
+        }
     }
-    else{
+    //check columns
+    Xcur, Ocur = 0;
+    for(int i = 0; i < ROWS-1; i++){
+        for(int j = 0; j < COLUMNS; j++){
+            if(board[i][j] == X && board[i+1][j] == X){
+                Xcur++;
+            }
+            else if(board[i][j] == O && board[i+1][j] == O){
+                Ocur++;
+            }
+            else if(i == ROWS-1){
+                if(Xcur > Xmax){
+                    Xmax = Xcur;
+                }
+                if(Ocur > Omax){
+                    Omax = Ocur;
+                }
+            }
+        }
+    }
+    if(Xmax == Omax){
         return Invalid;
-    }*/
-    return Blank;
+    }
+    else if(Xmax > Omax){
+        return X;
+    }
+    else
+    {
+        return O;
+    }
+    
 }
 
 TEST(PiezasTest, dropPiece){
@@ -224,4 +268,25 @@ TEST(PiezasTest, NotoutOfBounds){
     ASSERT_EQ(X, actual);
     ASSERT_EQ(O, actual1);
     ASSERT_EQ(X, actual2);
+}
+TEST(PiezasTest, GameState){
+   Piezas obj;
+   obj.dropPiece(0);    //X
+   obj.dropPiece(1);    //O
+   obj.dropPiece(0);    //X
+   obj.dropPiece(0);    //O
+   obj.dropPiece(2);    //X
+   obj.dropPiece(2);    //O
+   obj.dropPiece(1);    //X
+   obj.dropPiece(2);    //O
+    obj.dropPiece(1);   //X
+    obj.dropPiece(2);   //O
+    obj.dropPiece(0);   //X
+    obj.dropPiece(1);   //0
+
+    Piece result = obj.gameState();
+
+    ASSERT_EQ(O, result);
+
+
 }
