@@ -24,6 +24,7 @@
 
 const int ROWS = 3;
 const int COLUMNS = 4;
+
 class PiezasTest : public ::testing::Test
 {
 	protected:
@@ -70,6 +71,17 @@ void Piezas::reset()
 **/ 
 Piece Piezas::dropPiece(int column)
 { 
+    //out of bounds coordinates
+    if(column >= COLUMNS || column < 0){
+        //lose a turn
+        if(turn == X){
+            turn = O;
+        }
+        else{
+            turn = X;
+        }
+        return Invalid;
+    }
     //dont allow piece to be placed in a location where a column is full
     bool full = true;
     for(int i=0; i < ROWS; i++){
@@ -86,10 +98,10 @@ Piece Piezas::dropPiece(int column)
         }
         return Blank;
     }
-    else{
-        //drop piece on given column 
-        for(int i = 0; i < COLUMNS; i++){
-            if(board[i][column] == Blank){
+    //drop piece on given column already checked to see if valid
+    for(int i = 0; i < COLUMNS; i++){
+        if(board[i][column] == Blank){
+
                 board[i][column] = turn;
 
                 if(turn == X){
@@ -98,7 +110,7 @@ Piece Piezas::dropPiece(int column)
                 else{
                     turn = X;
                 }
-                return board[column][i];
+                return board[i][column];
             }
         }
     }   
@@ -129,6 +141,21 @@ Piece Piezas::pieceAt(int row, int column)
 **/
 Piece Piezas::gameState()
 {
+    /*//check is board is full 
+    bool full = true;
+    for(int i=0; i < ROWS; i++){
+        if(board[i][column] == Blank){
+            full = false;
+        }
+    }
+    if(full){
+        int Omax = 0;
+        int Xmax = 0;
+
+    }
+    else{
+        return Invalid;
+    }*/
     return Blank;
 }
 
@@ -161,6 +188,17 @@ TEST(PiezasTest, FullBoard){
 
     ASSERT_EQ(Blank, actual);
 }
+TEST(PiezasTest, FullBoardDifferentColumn){
+    
+    Piezas obj;
+    obj.dropPiece(2);
+    obj.dropPiece(2);
+    obj.dropPiece(2);
+    Piece actual = obj.dropPiece(2);
+
+    ASSERT_EQ(Blank, actual);
+}
+
 TEST(PiezasTest, outOfBounds){
     
     Piezas obj;
@@ -171,4 +209,15 @@ TEST(PiezasTest, outOfBounds){
     ASSERT_EQ(Invalid, actual);
     ASSERT_EQ(Invalid, actual1);
     ASSERT_EQ(Invalid, actual2);
+}
+TEST(PiezasTest, NotoutOfBounds){
+    
+    Piezas obj;
+    Piece actual = obj.pieceAt(1, 0);
+    Piece actual1 = obj.pieceAt(2, 2);
+    Piece actual2 = obj.pieceAt(2, 3);
+
+    ASSERT_EQ(X, actual);
+    ASSERT_EQ(O, actual1);
+    ASSERT_EQ(X), actual2);
 }
