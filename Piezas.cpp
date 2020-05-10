@@ -110,6 +110,11 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
+    //out of bounds
+    if ((row >= ROWS || row < 0) || (column >= COLUMNS || column < 0))
+    {
+        return Invalid;
+    }
     return board[row][column];
 }
 
@@ -155,4 +160,15 @@ TEST(PiezasTest, FullBoard){
     Piece actual = obj.dropPiece(0);
 
     ASSERT_EQ(Blank, actual);
+}
+TEST(PiezasTest, outOfBounds){
+    
+    Piezas obj;
+    Piece actual = obj.dropPiece(-1, 0);
+    Piece actual1 = obj.dropPiece(2, 6);
+    Piece actual2 = obj.dropPiece(3, 2);
+
+    ASSERT_EQ(Invalid, actual);
+    ASSERT_EQ(Invalid, actual1);
+    ASSERT_EQ(Invalid, actual2);
 }
