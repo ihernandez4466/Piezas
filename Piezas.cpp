@@ -200,7 +200,6 @@ Piece Piezas::gameState()
     {
         return O;
     }
-    std::cout << "about to return Blank" << endl;
     return Blank;
     
 }
