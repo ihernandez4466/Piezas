@@ -313,22 +313,3 @@ TEST(PiezasTest, Owins){
 	}
     EXPECT_EQ(O, obj.gameState());
 }
-
-TEST(PiezasTest, tie){
-
-    Piezas obj;
-	obj.dropPiece(0); 
-	obj.dropPiece(0); 
-	obj.dropPiece(0); 
-	obj.dropPiece(1); 
-	obj.dropPiece(1); 
-	obj.dropPiece(1);
-    obj.dropPiece(2); 
-    obj.dropPiece(2); 
-	obj.dropPiece(2); 
-	obj.dropPiece(3); 
-	obj.dropPiece(3); 
-	obj.dropPiece(3); 
-	
-    EXPECT_EQ(Blank, obj.gameState());
-}
