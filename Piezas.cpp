@@ -217,9 +217,9 @@ TEST(PiezasTest, outOfBounds){
 TEST(PiezasTest, NotoutOfBounds){
     
     Piezas obj;
-    Piece actual = obj.dropPiece(1, 0);
-    Piece actual1 = obj.dropPiece(2, 2);
-    Piece actual2 = obj.dropPiece(2, 3);
+    Piece actual = obj.dropPiece(1);
+    Piece actual1 = obj.dropPiece(2);
+    Piece actual2 = obj.dropPiece(3);
 
     ASSERT_EQ(X, actual);
     ASSERT_EQ(O, actual1);
